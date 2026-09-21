@@ -7,7 +7,7 @@ export default function PostPage() {
         <h1 className="text-3xl font-semibold text-[#2f4a3a]">Post a need</h1>
         <p className="mt-2 text-[#5c6b61]">
           Charity / steward demo form. Production will require vetted charity accounts — this PIN
-          gate is for the pilot UI only.
+          gate is for the pilot UI only. Same demo PIN confirms fulfillments on need detail pages.
         </p>
       </header>
       <PostNeedForm />

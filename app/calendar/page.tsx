@@ -41,7 +41,7 @@ export default async function CalendarPage({
         <h1 className="text-3xl font-semibold text-[#2f4a3a]">Claim calendar</h1>
         <p className="mt-2 max-w-2xl text-[#5c6b61]">
           Open jobs restaurants can commit to. Demo charity names are placeholders until Bubba’s
-          vetted roster lands.
+          vetted roster lands. After claim: mark fulfilled → charity confirm → scoreboard & plaques.
         </p>
       </header>
 

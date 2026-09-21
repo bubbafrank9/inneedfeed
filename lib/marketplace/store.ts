@@ -1,7 +1,14 @@
 import { promises as fs } from "fs";
 import path from "path";
+import { tierForConfirmedCount } from "./recognition";
 import { buildSeedNeeds } from "./seed";
-import type { ClaimNeedInput, CreateNeedInput, MealNeed } from "./types";
+import type {
+  ChicagoScoreboard,
+  ClaimNeedInput,
+  CreateNeedInput,
+  MealNeed,
+  RestaurantLeaderRow,
+} from "./types";
 
 const DATA_PATH = path.join(process.cwd(), "data", "needs.json");
 
@@ -61,8 +68,8 @@ export async function claimNeed(
   const needs = await ensureNeedsFile();
   const idx = needs.findIndex((n) => n.id === id);
   if (idx < 0) return { ok: false, error: "Need not found." };
-  if (needs[idx].status === "claimed") {
-    return { ok: false, error: "This need was already claimed." };
+  if (needs[idx].status !== "open") {
+    return { ok: false, error: "This need is no longer open for claims." };
   }
 
   needs[idx] = {
@@ -80,6 +87,101 @@ export async function claimNeed(
   return { ok: true, need: needs[idx] };
 }
 
+/** Restaurant marks delivery done → fulfilled (awaiting charity confirm). */
+export async function markFulfilled(
+  id: string,
+): Promise<{ ok: true; need: MealNeed } | { ok: false; error: string }> {
+  const needs = await ensureNeedsFile();
+  const idx = needs.findIndex((n) => n.id === id);
+  if (idx < 0) return { ok: false, error: "Need not found." };
+  if (needs[idx].status !== "claimed") {
+    return { ok: false, error: "Only claimed needs can be marked fulfilled." };
+  }
+
+  needs[idx] = {
+    ...needs[idx],
+    status: "fulfilled",
+    fulfilledAt: new Date().toISOString(),
+  };
+  await writeNeeds(needs);
+  return { ok: true, need: needs[idx] };
+}
+
+/** Charity confirms receipt with demo PIN → confirmed (counts for recognition). */
+export async function confirmFulfilled(
+  id: string,
+  pin: string,
+): Promise<{ ok: true; need: MealNeed } | { ok: false; error: string }> {
+  if (pin.trim() !== demoPin()) {
+    return { ok: false, error: "Wrong demo PIN. See README for the pilot code." };
+  }
+
+  const needs = await ensureNeedsFile();
+  const idx = needs.findIndex((n) => n.id === id);
+  if (idx < 0) return { ok: false, error: "Need not found." };
+  if (needs[idx].status !== "fulfilled") {
+    return { ok: false, error: "Only fulfilled needs can be confirmed by the charity." };
+  }
+
+  needs[idx] = {
+    ...needs[idx],
+    status: "confirmed",
+    confirmedAt: new Date().toISOString(),
+  };
+  await writeNeeds(needs);
+  return { ok: true, need: needs[idx] };
+}
+
 export function demoPin(): string {
   return process.env.DEMO_PIN?.trim() || "2244";
+}
+
+export async function getChicagoScoreboard(): Promise<ChicagoScoreboard> {
+  const needs = await listNeeds();
+  const confirmed = needs.filter((n) => n.status === "confirmed");
+  const restaurants = new Set(
+    confirmed
+      .map((n) => n.claimedBy?.restaurantName?.trim())
+      .filter((name): name is string => Boolean(name)),
+  );
+  const charities = new Set(
+    confirmed.map((n) => n.charityName.trim()).filter(Boolean),
+  );
+
+  return {
+    confirmedMeals: confirmed.length,
+    confirmedHeadcount: confirmed.reduce((sum, n) => sum + n.headcount, 0),
+    restaurantsWithConfirmed: restaurants.size,
+    charitiesWithConfirmed: charities.size,
+    openCount: needs.filter((n) => n.status === "open").length,
+    claimedCount: needs.filter((n) => n.status === "claimed").length,
+    fulfilledPendingConfirm: needs.filter((n) => n.status === "fulfilled").length,
+  };
+}
+
+/** Live restaurant leaderboard — confirmed meals only. */
+export async function listRestaurantLeaderboard(): Promise<RestaurantLeaderRow[]> {
+  const needs = await listNeeds();
+  const map = new Map<string, { confirmedCount: number; confirmedHeadcount: number }>();
+
+  for (const need of needs) {
+    if (need.status !== "confirmed" || !need.claimedBy?.restaurantName) continue;
+    const name = need.claimedBy.restaurantName.trim();
+    const row = map.get(name) ?? { confirmedCount: 0, confirmedHeadcount: 0 };
+    row.confirmedCount += 1;
+    row.confirmedHeadcount += need.headcount;
+    map.set(name, row);
+  }
+
+  return [...map.entries()]
+    .map(([restaurantName, stats]) => ({
+      restaurantName,
+      confirmedCount: stats.confirmedCount,
+      confirmedHeadcount: stats.confirmedHeadcount,
+      tier: tierForConfirmedCount(stats.confirmedCount),
+    }))
+    .sort((a, b) => {
+      if (b.confirmedCount !== a.confirmedCount) return b.confirmedCount - a.confirmedCount;
+      return b.confirmedHeadcount - a.confirmedHeadcount;
+    });
 }

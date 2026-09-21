@@ -2,10 +2,24 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { claimNeed, createNeed, demoPin } from "@/lib/marketplace/store";
+import {
+  claimNeed,
+  confirmFulfilled,
+  createNeed,
+  demoPin,
+  markFulfilled,
+} from "@/lib/marketplace/store";
 import type { MealType } from "@/lib/marketplace/types";
 
 export type ActionState = { error?: string; ok?: boolean };
+
+function revalidateNeedPaths(needId: string) {
+  revalidatePath("/calendar");
+  revalidatePath(`/needs/${needId}`);
+  revalidatePath("/");
+  revalidatePath("/scoreboard");
+  revalidatePath("/recognition");
+}
 
 export async function claimNeedAction(
   needId: string,
@@ -24,10 +38,33 @@ export async function claimNeedAction(
 
   if (!result.ok) return { error: result.error };
 
-  revalidatePath("/calendar");
-  revalidatePath(`/needs/${needId}`);
-  revalidatePath("/");
+  revalidateNeedPaths(needId);
   redirect(`/needs/${needId}?claimed=1`);
+}
+
+export async function markFulfilledAction(
+  needId: string,
+  _prev: ActionState,
+  _formData: FormData,
+): Promise<ActionState> {
+  const result = await markFulfilled(needId);
+  if (!result.ok) return { error: result.error };
+
+  revalidateNeedPaths(needId);
+  redirect(`/needs/${needId}?fulfilled=1`);
+}
+
+export async function confirmFulfilledAction(
+  needId: string,
+  _prev: ActionState,
+  formData: FormData,
+): Promise<ActionState> {
+  const pin = String(formData.get("demoPin") || "");
+  const result = await confirmFulfilled(needId, pin);
+  if (!result.ok) return { error: result.error };
+
+  revalidateNeedPaths(needId);
+  redirect(`/needs/${needId}?confirmed=1`);
 }
 
 export async function createNeedAction(
@@ -76,5 +113,6 @@ export async function createNeedAction(
 
   revalidatePath("/calendar");
   revalidatePath("/");
+  revalidatePath("/scoreboard");
   redirect(`/needs/${need.id}`);
 }

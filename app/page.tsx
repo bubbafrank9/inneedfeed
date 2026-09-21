@@ -19,8 +19,12 @@ export default async function HomePage() {
         </h1>
         <p className="mt-4 max-w-2xl text-lg leading-8 text-[#5c6b61]">
           InNeedFeed lets charities post specific upcoming meals — dinner for 20 elders, 250
-          shelter breakfasts — and restaurants commit on a calendar. Recognition plaques come after
-          fulfillment (stubbed for this MVP).
+          shelter breakfasts — and restaurants commit on a calendar. Recognition plaques count only
+          after charity confirms fulfillment — never on claim alone. Track honest city totals on the{" "}
+          <Link href="/scoreboard" className="font-medium text-[#2f4a3a] underline underline-offset-2">
+            Chicago scoreboard
+          </Link>
+          .
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
@@ -30,8 +34,14 @@ export default async function HomePage() {
             Browse calendar
           </Link>
           <Link
-            href="/post"
+            href="/scoreboard"
             className="rounded-full border border-[#2f4a3a] px-5 py-2.5 text-sm font-medium text-[#2f4a3a]"
+          >
+            City scoreboard
+          </Link>
+          <Link
+            href="/post"
+            className="rounded-full border border-[#c4a574] px-5 py-2.5 text-sm font-medium text-[#7a5c2e]"
           >
             Post a need (demo)
           </Link>
@@ -61,10 +71,12 @@ export default async function HomePage() {
           Every card is a scheduled headcount, window, and diet rules — the opposite of roulette.
         </Info>
         <Info title="One claim per need">
-          Confirm diet, allergens, and timing before you lock the slot.
+          Confirm diet, allergens, and timing before you lock the slot. Then mark fulfilled; charity
+          confirms before it counts.
         </Info>
-        <Info title="Pride on the wall">
-          Neighbor → Table Steward → City Champion plaque copy lives under Plaques.
+        <Info title="Confirm before plaque">
+          Neighbor → Table Steward → City Champion only after confirmed meals. See Plaques and the
+          scoreboard.
         </Info>
       </section>
     </div>

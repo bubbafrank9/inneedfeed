@@ -1,4 +1,9 @@
-export type NeedStatus = "open" | "claimed";
+export type NeedStatus =
+  | "open"
+  | "claimed"
+  | "fulfilled"
+  | "confirmed"
+  | "cancelled";
 
 export type MealType = "breakfast" | "lunch" | "dinner" | "snack";
 
@@ -22,6 +27,8 @@ export interface MealNeed {
     contactEmail: string;
     claimedAt: string;
   };
+  fulfilledAt?: string;
+  confirmedAt?: string;
   createdAt: string;
 }
 
@@ -46,4 +53,21 @@ export interface ClaimNeedInput {
   confirmDiet: boolean;
   confirmAllergens: boolean;
   confirmWindow: boolean;
+}
+
+export interface ChicagoScoreboard {
+  confirmedMeals: number;
+  confirmedHeadcount: number;
+  restaurantsWithConfirmed: number;
+  charitiesWithConfirmed: number;
+  openCount: number;
+  claimedCount: number;
+  fulfilledPendingConfirm: number;
+}
+
+export interface RestaurantLeaderRow {
+  restaurantName: string;
+  confirmedCount: number;
+  confirmedHeadcount: number;
+  tier: "Neighbor" | "Table Steward" | "City Champion" | null;
 }

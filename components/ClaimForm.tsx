@@ -13,7 +13,8 @@ export function ClaimForm({ needId }: { needId: string }) {
     <form action={formAction} className="mt-6 space-y-4 rounded-2xl border border-[#e7dcc8] bg-white p-6">
       <h2 className="text-lg font-semibold text-[#2f4a3a]">Claim this need</h2>
       <p className="text-sm text-[#5c6b61]">
-        Two-step honesty: check the boxes, then submit. One restaurant per need.
+        Two-step honesty: check the boxes, then submit. One restaurant per need. Plaques only count
+        after charity confirms fulfillment.
       </p>
       {state.error ? (
         <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-800">{state.error}</p>
