@@ -10,19 +10,24 @@ const STATUS_STYLES: Record<NeedStatus, { label: string; className: string }> = 
   cancelled: { label: "Cancelled", className: "bg-[#f0e6d6] text-[#5c6b61]" },
 };
 
+/** Card headers only — never reuse home hero/gallery shots (avoids same-screen duplicates). */
 const NEIGHBORHOOD_PHOTOS = [
-  "/chicago/shot-tower-up.jpg",
-  "/chicago/shot-federal-plaza.jpg",
-  "/chicago/shot-harold-library.jpg",
-  "/chicago/shot-patio-night.jpg",
-  "/chicago/shot-neon-river.jpg",
   "/chicago/shot-river-reflection.jpg",
-  "/chicago/shot-urban-canyon.jpg",
   "/chicago/shot-pink-towers.jpg",
-  "/chicago/shot-rooftop-clouds.jpg",
-  "/chicago/shot-beach-life.jpg",
-  "/chicago/shot-harbor-dock.jpg",
-  "/chicago/shot-fireworks.jpg",
+  "/chicago/shot-sunset-hero.jpg",
+  "/chicago/shot-night-trees.jpg",
+  "/chicago/shot-night-band.jpg",
+  "/chicago/shot-night-waterfront.jpg",
+  "/chicago/shot-rooftops-dusk.jpg",
+  "/chicago/shot-pano-day-west.jpg",
+  "/chicago/shot-pano-day-east.jpg",
+  "/chicago/shot-pano-dusk-left.jpg",
+  "/chicago/shot-fireworks-wide.jpg",
+  "/chicago/shot-harbor-masts.jpg",
+  "/chicago/section-towers.jpg",
+  "/chicago/section-skyline.jpg",
+  "/chicago/section-river.jpg",
+  "/chicago/section-bean.jpg",
 ];
 
 function photoForNeed(id: string): string {

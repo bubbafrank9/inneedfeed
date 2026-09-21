@@ -109,8 +109,8 @@ export function SiteNavClient({
   }, [pathname]);
 
   const mod = useMemo(() => {
-    if (typeof navigator === "undefined") return "⌘";
-    return /Mac|iPhone|iPad/.test(navigator.platform) ? "⌘" : "Ctrl";
+    if (typeof navigator === "undefined") return "âŒ˜";
+    return /Mac|iPhone|iPad/.test(navigator.platform) ? "âŒ˜" : "Ctrl";
   }, []);
 
   return (
@@ -131,14 +131,14 @@ export function SiteNavClient({
         <div className="relative mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
           <Link href="/" className="group flex items-center gap-2.5">
             <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#fffaf2]/15 ring-1 ring-white/30 backdrop-blur transition group-hover:bg-[#fffaf2]/25">
-              <span className="text-lg leading-none">🍲</span>
+              <span className="text-lg leading-none">ðŸ²</span>
             </span>
             <span className="flex flex-col">
               <span className="text-sm font-semibold tracking-tight text-[#fffaf2] sm:text-base">
                 InNeedFeed
               </span>
               <span className="hidden text-[10px] uppercase tracking-[0.16em] text-[#e7dcc8]/80 sm:block">
-                Chicago · Bread &amp; Table
+                Chicago Â· Bread &amp; Table
               </span>
             </span>
           </Link>
@@ -211,7 +211,7 @@ export function SiteNavClient({
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[#7dce95]" />
               </span>
               <span className="tabular-nums">
-                <strong>{openCount}</strong> open · <strong>{claimedCount}</strong> in flight
+                <strong>{openCount}</strong> open Â· <strong>{claimedCount}</strong> in flight
               </span>
             </div>
 
@@ -249,7 +249,7 @@ export function SiteNavClient({
           />
           <aside className="absolute right-0 top-0 flex h-full w-[min(100%,20rem)] flex-col bg-[#fffaf2] shadow-2xl">
             <div className="relative h-36 overflow-hidden">
-              <Image src="/chicago/shot-beach-life.jpg" alt="" fill className="object-cover" sizes="320px" />
+              <Image src="/chicago/section-lakefront.jpg" alt="" fill className="object-cover" sizes="320px" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#fffaf2] via-[#2f4a3a]/40 to-[#2f4a3a]/50" />
               <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4">
                 <div>

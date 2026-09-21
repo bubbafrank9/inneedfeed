@@ -5,16 +5,16 @@ import { listNeeds } from "@/lib/marketplace/store";
 
 export const dynamic = "force-dynamic";
 
-/** Personal Chicago album — mixed artistic views (street, river, plaza, night life). */
+/** Personal Chicago album — city character (street, plaza, civic, Mart, canyon, patio, one river night, neighborhood). */
 const GALLERY = [
   {
-    src: "/chicago/shot-tower-up.jpg",
-    alt: "Looking up at a Chicago tower against blue sky",
-    caption: "Street · looking up",
+    src: "/chicago/shot-magnificile.jpg",
+    alt: "Looking up past The Drake toward the Hancock on Goethe Street",
+    caption: "Magnificent Mile · Goethe",
   },
   {
     src: "/chicago/shot-federal-plaza.jpg",
-    alt: "Federal Plaza architecture and sculpture at street level",
+    alt: "Federal Plaza architecture and Calder sculpture at street level",
     caption: "Federal Plaza",
   },
   {
@@ -23,49 +23,29 @@ const GALLERY = [
     caption: "Harold Washington Library",
   },
   {
+    src: "/chicago/shot-merchandise-mart.jpg",
+    alt: "Merchandise Mart and riverfront towers at dusk",
+    caption: "Merchandise Mart · dusk",
+  },
+  {
+    src: "/chicago/shot-pano-day-loop.jpg",
+    alt: "Daytime Chicago Loop skyline across Grant Park",
+    caption: "The Loop · day",
+  },
+  {
     src: "/chicago/shot-patio-night.jpg",
     alt: "Night outdoor dining patio with orange umbrellas and city buildings",
-    caption: "Patio night",
+    caption: "River patio night",
   },
   {
     src: "/chicago/shot-neon-river.jpg",
     alt: "Neon purple and pink river reflections of Chicago buildings",
-    caption: "Neon river",
-  },
-  {
-    src: "/chicago/shot-river-reflection.jpg",
-    alt: "Chicago River at night with riverside tower reflections",
-    caption: "River reflections",
-  },
-  {
-    src: "/chicago/shot-urban-canyon.jpg",
-    alt: "Elevated downtown street canyon at dusk",
-    caption: "Urban canyon",
-  },
-  {
-    src: "/chicago/shot-pink-towers.jpg",
-    alt: "Low-angle skyscraper cluster against a pink sunset sky",
-    caption: "Pink hour towers",
+    caption: "River lights",
   },
   {
     src: "/chicago/shot-rooftop-clouds.jpg",
-    alt: "Rooftop neighborhood view under a dramatic cloudscape",
-    caption: "Rooftop clouds",
-  },
-  {
-    src: "/chicago/shot-beach-life.jpg",
-    alt: "North Avenue Beach from the sand with the Hancock behind",
-    caption: "Beach life",
-  },
-  {
-    src: "/chicago/shot-harbor-dock.jpg",
-    alt: "Harbor boats and skyline with a No Wake dock",
-    caption: "Harbor dock",
-  },
-  {
-    src: "/chicago/shot-fireworks.jpg",
-    alt: "Pink fireworks over the lit Chicago skyline",
-    caption: "Fireworks",
+    alt: "Neighborhood brick rooftop under a dramatic cloudscape",
+    caption: "Neighborhood rooftop",
   },
 ] as const;
 
@@ -77,8 +57,8 @@ export default async function HomePage() {
     <div className="flex w-full flex-1 flex-col">
       <section className="relative isolate min-h-[28rem] overflow-hidden sm:min-h-[32rem]">
         <Image
-          src="/chicago/shot-sunset-hero.jpg"
-          alt="Chicago skyline at sunset from the water"
+          src="/chicago/shot-bluehour-river.jpg"
+          alt="Chicago River at blue hour with Wrigley Building and Michigan Avenue Bridge"
           fill
           priority
           className="object-cover object-center"
@@ -143,10 +123,7 @@ export default async function HomePage() {
 
         <section>
           <h2 className="text-2xl font-semibold text-[#2f4a3a]">This city</h2>
-          <p className="mt-1 text-sm text-[#5c6b61]">
-            Your Chicago album — street, plaza, river nights, patio life, library, beach, and harbor.
-            No stock.
-          </p>
+          <p className="mt-1 text-sm text-[#5c6b61]">Your Chicago album — Mag Mile street, Federal Plaza, the library, Merchandise Mart, a street canyon, patio night, one river-lights shot, and a neighborhood rooftop. One of each. No beach or harbor clones.</p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {GALLERY.map((shot) => (
               <figure
