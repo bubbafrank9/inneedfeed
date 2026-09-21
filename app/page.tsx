@@ -7,6 +7,11 @@ export const dynamic = "force-dynamic";
 
 const GALLERY = [
   {
+    src: "/chicago/20180804_191714.jpg",
+    alt: "Chicago skyline at sunset from the water",
+    caption: "Sunset skyline",
+  },
+  {
     src: "/chicago/20180712_153056.jpg",
     alt: "Oak Street Beach with the Hancock Tower behind the sand",
     caption: "The lakefront",
@@ -19,7 +24,32 @@ const GALLERY = [
   {
     src: "/chicago/20180714_222243.jpg",
     alt: "Pink fireworks over the Chicago skyline at night",
-    caption: "The city at night",
+    caption: "Fireworks",
+  },
+  {
+    src: "/chicago/20180712_190107.jpg",
+    alt: "Wide Chicago skyline panorama across the water",
+    caption: "Skyline panorama",
+  },
+  {
+    src: "/chicago/20180714_215139.jpg",
+    alt: "Chicago skyline lights at dusk across the lake",
+    caption: "Dusk on the lake",
+  },
+  {
+    src: "/chicago/20180714_221905.jpg",
+    alt: "Night skyline panorama from the water",
+    caption: "Night panorama",
+  },
+  {
+    src: "/chicago/20180712_202927.jpg",
+    alt: "Evening Chicago skyline panorama",
+    caption: "Evening skyline",
+  },
+  {
+    src: "/chicago/20180715_213655.jpg",
+    alt: "Chicago at night from the pier",
+    caption: "Night pier",
   },
 ] as const;
 
@@ -98,21 +128,21 @@ export default async function HomePage() {
         <section>
           <h2 className="text-2xl font-semibold text-[#2f4a3a]">This city</h2>
           <p className="mt-1 text-sm text-[#5c6b61]">
-            Personal shots from the Chicago album — the place these meals land.
+            Your Chicago album only — panoramas center-cropped for the page. No stock photos.
           </p>
-          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {GALLERY.map((shot) => (
               <figure
                 key={shot.src}
                 className="overflow-hidden rounded-2xl border border-[#e7dcc8] bg-[#f0e6d6]"
               >
-                <div className="relative aspect-[4/3]">
+                <div className="relative aspect-[16/10]">
                   <Image
                     src={shot.src}
                     alt={shot.alt}
                     fill
                     className="object-cover"
-                    sizes="(min-width: 640px) 33vw, 100vw"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   />
                 </div>
                 <figcaption className="px-3 py-2 text-xs font-medium text-[#5c6b61]">
