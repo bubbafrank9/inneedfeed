@@ -22,16 +22,55 @@ export function FulfillActions({
   return <ConfirmFulfilledForm needId={needId} />;
 }
 
+function StepHint({
+  current,
+}: {
+  current: "fulfill" | "confirm";
+}) {
+  const steps = [
+    { id: "claim", label: "Claimed" },
+    { id: "fulfill", label: "Fulfill" },
+    { id: "confirm", label: "Confirm" },
+  ] as const;
+
+  return (
+    <ol className="mb-4 flex flex-wrap gap-2 text-xs">
+      {steps.map((step, i) => {
+        const done =
+          step.id === "claim" ||
+          (step.id === "fulfill" && current === "confirm");
+        const active = step.id === current;
+        return (
+          <li
+            key={step.id}
+            className={
+              active
+                ? "rounded-full bg-[#2f4a3a] px-2.5 py-1 font-medium text-[#fffaf2]"
+                : done
+                  ? "rounded-full bg-[#e7f2ea] px-2.5 py-1 font-medium text-[#2f4a3a]"
+                  : "rounded-full bg-[#f0e6d6] px-2.5 py-1 text-[#8a6b3d]"
+            }
+          >
+            {i + 1}. {step.label}
+            {active ? " ← you are here" : done ? " ✓" : ""}
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
 function MarkFulfilledForm({ needId }: { needId: string }) {
   const action = markFulfilledAction.bind(null, needId);
   const [state, formAction, pending] = useActionState(action, initial);
 
   return (
     <form action={formAction} className="mt-4 space-y-4 rounded-2xl border border-[#e7dcc8] bg-white p-6">
-      <h2 className="text-lg font-semibold text-[#2f4a3a]">Mark fulfilled</h2>
-      <p className="text-sm text-[#5c6b61]">
-        Restaurant step: trays delivered in the window. Charity still must confirm before this
-        counts on the scoreboard or for plaques.
+      <StepHint current="fulfill" />
+      <h2 className="text-lg font-semibold text-[#2f4a3a]">Next: mark fulfilled</h2>
+      <p className="text-sm leading-6 text-[#5c6b61]">
+        Restaurant step — trays delivered in the window. After you mark fulfilled, the charity
+        still must confirm before this counts on the scoreboard or for plaques.
       </p>
       {state.error ? (
         <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-800">{state.error}</p>
@@ -53,8 +92,9 @@ function ConfirmFulfilledForm({ needId }: { needId: string }) {
 
   return (
     <form action={formAction} className="mt-4 space-y-4 rounded-2xl border border-[#e7dcc8] bg-white p-6">
-      <h2 className="text-lg font-semibold text-[#2f4a3a]">Charity confirm</h2>
-      <p className="text-sm text-[#5c6b61]">
+      <StepHint current="confirm" />
+      <h2 className="text-lg font-semibold text-[#2f4a3a]">Next: charity confirm</h2>
+      <p className="text-sm leading-6 text-[#5c6b61]">
         Confirm the meal arrived usable and on time. MVP uses the same demo PIN as posting a need.
         Only confirmed meals count for recognition.
       </p>

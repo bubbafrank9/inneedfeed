@@ -4,6 +4,35 @@ import { ClaimForm } from "@/components/ClaimForm";
 import { FulfillActions } from "@/components/FulfillActions";
 import { getNeed } from "@/lib/marketplace/store";
 
+
+function StatusPath({ status }: { status: string }) {
+  const steps = ["open", "claimed", "fulfilled", "confirmed"] as const;
+  const idx = steps.indexOf(status as (typeof steps)[number]);
+  return (
+    <ol className="flex flex-wrap gap-2 text-xs">
+      {steps.map((step, i) => {
+        const done = idx > i;
+        const active = idx === i;
+        return (
+          <li
+            key={step}
+            className={
+              active
+                ? "rounded-full bg-[#2f4a3a] px-2.5 py-1 font-medium capitalize text-[#fffaf2]"
+                : done
+                  ? "rounded-full bg-[#e7f2ea] px-2.5 py-1 font-medium capitalize text-[#2f4a3a]"
+                  : "rounded-full bg-[#f0e6d6] px-2.5 py-1 capitalize text-[#8a6b3d]"
+            }
+          >
+            {step}
+            {active ? " ← now" : done ? " ✓" : ""}
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
 export const dynamic = "force-dynamic";
 
 export default async function NeedDetailPage({
@@ -23,6 +52,8 @@ export default async function NeedDetailPage({
       <Link href="/calendar" className="text-sm font-medium text-[#8a6b3d] hover:underline">
         ← Back to calendar
       </Link>
+
+      <StatusPath status={need.status} />
 
       {flash.claimed ? (
         <p className="rounded-xl bg-[#e7f2ea] px-4 py-3 text-sm text-[#2f4a3a]">
