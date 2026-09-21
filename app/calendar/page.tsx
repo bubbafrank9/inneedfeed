@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NeedCard } from "@/components/NeedCard";
+import { PageBanner } from "@/components/PageBanner";
 import { listNeeds } from "@/lib/marketplace/store";
 
 export const dynamic = "force-dynamic";
@@ -36,24 +37,27 @@ export default async function CalendarPage({
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-8 px-6 py-12">
-      <header>
-        <h1 className="text-3xl font-semibold text-[#2f4a3a]">Claim calendar</h1>
-        <p className="mt-2 max-w-2xl text-[#5c6b61]">
-          Open jobs restaurants can commit to. Demo charity names are placeholders until Bubba’s
-          vetted roster lands. After claim: mark fulfilled → charity confirm → scoreboard & plaques.
+    <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-8 px-4 py-8 sm:px-6 sm:py-12">
+      <PageBanner
+        src="/chicago/section-boats.jpg"
+        eyebrow="Chicago · claimable meal jobs"
+        title="Claim calendar"
+      >
+        <p>
+          Open jobs restaurants can commit to. Demo charity names are placeholders until the vetted
+          roster lands. After claim: mark fulfilled → charity confirm → scoreboard &amp; plaques.
         </p>
-      </header>
+      </PageBanner>
 
       <div className="flex flex-wrap gap-2">
         {months.map((m) => (
           <Link
             key={m}
             href={`/calendar?month=${m}`}
-            className={`rounded-full px-4 py-1.5 text-sm font-medium ${
+            className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
               m === active
-                ? "bg-[#2f4a3a] text-[#fffaf2]"
-                : "border border-[#e7dcc8] bg-white text-[#3d5346]"
+                ? "bg-[#2f4a3a] text-[#fffaf2] shadow"
+                : "border border-[#e7dcc8] bg-white text-[#3d5346] hover:border-[#c4a574]"
             }`}
           >
             {labelMonth(m)}

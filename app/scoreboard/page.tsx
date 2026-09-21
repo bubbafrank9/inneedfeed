@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PageBanner } from "@/components/PageBanner";
 import { getChicagoScoreboard } from "@/lib/marketplace/store";
 
 export const dynamic = "force-dynamic";
@@ -7,24 +8,20 @@ export default async function ScoreboardPage() {
   const board = await getChicagoScoreboard();
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-8 px-6 py-12">
-      <header>
-        <p className="text-sm font-medium uppercase tracking-wide text-[#8a6b3d]">
-          Chicago · public aggregates
+    <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-8 px-4 py-8 sm:px-6 sm:py-12">
+      <PageBanner
+        src="/chicago/section-skyline.jpg"
+        eyebrow="Chicago · public aggregates"
+        title="City scoreboard"
+      >
+        <p>
+          Honest city-level counts. Confirmed meals only — claim and fulfill-without-confirm do not
+          inflate the board. Seed charity names are demo placeholders.
         </p>
-        <h1 className="mt-2 text-3xl font-semibold text-[#2f4a3a]">City scoreboard</h1>
-        <p className="mt-2 max-w-2xl text-[#5c6b61]">
-          Honest city-level counts for InNeedFeed. Confirmed meals only — claim and fulfill-without-confirm
-          do not inflate the board. Seed charity names are demo placeholders.
-        </p>
-      </header>
+      </PageBanner>
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <Stat
-          label="Confirmed meals"
-          value={String(board.confirmedMeals)}
-          hint="Charity-confirmed fulfillments"
-        />
+        <Stat label="Confirmed meals" value={String(board.confirmedMeals)} hint="Charity-confirmed fulfillments" />
         <Stat
           label="Confirmed headcount"
           value={board.confirmedHeadcount.toLocaleString("en-US")}
@@ -63,17 +60,9 @@ export default async function ScoreboardPage() {
   );
 }
 
-function Stat({
-  label,
-  value,
-  hint,
-}: {
-  label: string;
-  value: string;
-  hint: string;
-}) {
+function Stat({ label, value, hint }: { label: string; value: string; hint: string }) {
   return (
-    <div className="rounded-2xl border border-[#e7dcc8] bg-white p-6">
+    <div className="rounded-2xl border border-[#e7dcc8] bg-white/90 p-6 shadow-sm transition hover:shadow-md">
       <p className="text-xs font-medium uppercase tracking-wide text-[#8a6b3d]">{label}</p>
       <p className="mt-2 text-3xl font-semibold tabular-nums text-[#2f4a3a]">{value}</p>
       <p className="mt-2 text-sm text-[#5c6b61]">{hint}</p>

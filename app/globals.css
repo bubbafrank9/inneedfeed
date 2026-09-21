@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fffaf2;
+  --foreground: #2f4a3a;
+  --card: #ffffff;
+  --muted: #5c6b61;
+  --accent: #c4a574;
+  --forest: #2f4a3a;
+  --cream: #fffaf2;
 }
 
 @theme inline {
@@ -12,15 +17,42 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(196, 165, 116, 0.18), transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, rgba(47, 74, 58, 0.1), transparent 50%),
+    var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Extra bottom padding so mobile tab bar doesn't cover content */
+@media (max-width: 1023px) {
+  main.app-main {
+    padding-bottom: 5.5rem;
+  }
+}
+
+::selection {
+  background: #c4a574;
+  color: #1a2e24;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.45s ease-out both;
 }

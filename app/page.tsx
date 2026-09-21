@@ -1,51 +1,33 @@
 import Link from "next/link";
+import { ChicagoHero } from "@/components/ChicagoHero";
 import { NeedCard } from "@/components/NeedCard";
-import { listNeeds } from "@/lib/marketplace/store";
+import { getChicagoScoreboard, listNeeds } from "@/lib/marketplace/store";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const needs = await listNeeds();
+  const [needs, board] = await Promise.all([listNeeds(), getChicagoScoreboard()]);
   const open = needs.filter((n) => n.status === "open").slice(0, 4);
+  const openCount = needs.filter((n) => n.status === "open").length;
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-12 px-6 py-12">
-      <section className="rounded-3xl border border-[#e7dcc8] bg-gradient-to-br from-[#fffaf2] to-[#f0e6d6] p-8 sm:p-12">
-        <p className="text-sm font-medium uppercase tracking-wide text-[#8a6b3d]">
-          Bread &amp; Table · Chicago pilot
-        </p>
-        <h1 className="mt-3 max-w-2xl text-4xl font-semibold tracking-tight text-[#2f4a3a] sm:text-5xl">
-          Claim a real meal need. Feed neighbors. Earn a mark worth hanging.
-        </h1>
-        <p className="mt-4 max-w-2xl text-lg leading-8 text-[#5c6b61]">
-          InNeedFeed lets charities post specific upcoming meals — dinner for 20 elders, 250
-          shelter breakfasts — and restaurants commit on a calendar. Recognition plaques count only
-          after charity confirms fulfillment — never on claim alone. Track honest city totals on the{" "}
-          <Link href="/scoreboard" className="font-medium text-[#2f4a3a] underline underline-offset-2">
-            Chicago scoreboard
-          </Link>
-          .
-        </p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link
-            href="/calendar"
-            className="rounded-full bg-[#2f4a3a] px-5 py-2.5 text-sm font-medium text-[#fffaf2]"
-          >
-            Browse calendar
-          </Link>
-          <Link
-            href="/scoreboard"
-            className="rounded-full border border-[#2f4a3a] px-5 py-2.5 text-sm font-medium text-[#2f4a3a]"
-          >
-            City scoreboard
-          </Link>
-          <Link
-            href="/post"
-            className="rounded-full border border-[#c4a574] px-5 py-2.5 text-sm font-medium text-[#7a5c2e]"
-          >
-            Post a need (demo)
-          </Link>
-        </div>
+    <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-12 px-4 py-8 sm:px-6 sm:py-12">
+      <ChicagoHero
+        openCount={openCount}
+        confirmedHint={
+          board.confirmedMeals > 0
+            ? `${board.confirmedMeals} confirmed meals on the city board so far.`
+            : "The city scoreboard stays honest — claims alone never inflate it."
+        }
+      />
+
+      <section className="animate-fade-up grid gap-3 sm:grid-cols-3">
+        <StatChip label="Open now" value={String(openCount)} />
+        <StatChip label="Confirmed meals" value={String(board.confirmedMeals)} />
+        <StatChip
+          label="Confirmed headcount"
+          value={board.confirmedHeadcount.toLocaleString("en-US")}
+        />
       </section>
 
       <section>
@@ -83,9 +65,18 @@ export default async function HomePage() {
   );
 }
 
+function StatChip({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-2xl border border-[#e7dcc8] bg-white/80 px-5 py-4 shadow-sm backdrop-blur">
+      <p className="text-xs font-medium uppercase tracking-wide text-[#8a6b3d]">{label}</p>
+      <p className="mt-1 text-2xl font-semibold tabular-nums text-[#2f4a3a]">{value}</p>
+    </div>
+  );
+}
+
 function Info({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-[#e7dcc8] bg-white p-5">
+    <div className="rounded-2xl border border-[#e7dcc8] bg-white/90 p-5 shadow-sm">
       <h3 className="font-semibold text-[#2f4a3a]">{title}</h3>
       <p className="mt-2 text-sm leading-6 text-[#5c6b61]">{children}</p>
     </div>
