@@ -1,15 +1,8 @@
-# Chicago photography credits
+# Chicago photography — personal album
 
-Free under the [Unsplash License](https://unsplash.com/license) and [Pexels License](https://www.pexels.com/license/).
+Source: Google Photos album **CHICAGO** (Kenny/Bubba)
+Album URL: https://photos.google.com/album/AF1QipM73EA2NIA2rh5GNB3pBC1F-MvkEhPZsGiOs7QK
+Exported: 2026-09-21 by Grok Bot for InNeedFeed.
 
-| File | Source | Subject |
-|------|--------|---------|
-| hero.jpg | Unsplash — Juan Pablo Lara (@sanpablico) | Lake Michigan skyline |
-| nav-bg.jpg | Unsplash | South Loop skyline from road |
-| section-river.jpg | Unsplash — sydney Rae (@srz) | Chicago River |
-| section-boats.jpg | Unsplash — Jadon Johnson (@jadonjohnson) | Skyline with boats |
-| section-bean.jpg | Unsplash | Cloud Gate / Millennium Park |
-| section-skyline.jpg | Pexels 208745 | Classic Chicago skyline |
-| section-towers.jpg | Unsplash | Downtown towers |
-| section-lakefront.jpg | Unsplash | Lakefront skyline |
-| downtown.jpg | Unsplash | Downtown / South Loop |
+Personal photographs — not Unsplash/Pexels stock. Use only with owner permission.
+Originals also at `/workspace/chicago-album/` and Google Drive folder **InNeedFeed Chicago Album**.
