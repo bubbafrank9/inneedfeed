@@ -11,16 +11,18 @@ const STATUS_STYLES: Record<NeedStatus, { label: string; className: string }> = 
 };
 
 const NEIGHBORHOOD_PHOTOS = [
+  "/chicago/shot-tower-up.jpg",
+  "/chicago/shot-federal-plaza.jpg",
+  "/chicago/shot-harold-library.jpg",
+  "/chicago/shot-patio-night.jpg",
+  "/chicago/shot-neon-river.jpg",
+  "/chicago/shot-river-reflection.jpg",
+  "/chicago/shot-urban-canyon.jpg",
+  "/chicago/shot-pink-towers.jpg",
+  "/chicago/shot-rooftop-clouds.jpg",
   "/chicago/shot-beach-life.jpg",
   "/chicago/shot-harbor-dock.jpg",
-  "/chicago/shot-harbor-masts.jpg",
   "/chicago/shot-fireworks.jpg",
-  "/chicago/shot-night-trees.jpg",
-  "/chicago/shot-pano-day-west.jpg",
-  "/chicago/shot-pano-day-east.jpg",
-  "/chicago/shot-pano-dusk-right.jpg",
-  "/chicago/shot-pano-night-left.jpg",
-  "/chicago/shot-sunset-squareish.jpg",
 ];
 
 function photoForNeed(id: string): string {

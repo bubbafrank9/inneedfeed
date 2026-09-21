@@ -5,52 +5,67 @@ import { listNeeds } from "@/lib/marketplace/store";
 
 export const dynamic = "force-dynamic";
 
-/** Personal Chicago album — mixed views (beach, harbor, fireworks, night, sliced panos). */
+/** Personal Chicago album — mixed artistic views (street, river, plaza, night life). */
 const GALLERY = [
   {
+    src: "/chicago/shot-tower-up.jpg",
+    alt: "Looking up at a Chicago tower against blue sky",
+    caption: "Street · looking up",
+  },
+  {
+    src: "/chicago/shot-federal-plaza.jpg",
+    alt: "Federal Plaza architecture and sculpture at street level",
+    caption: "Federal Plaza",
+  },
+  {
+    src: "/chicago/shot-harold-library.jpg",
+    alt: "Harold Washington Library at sunset",
+    caption: "Harold Washington Library",
+  },
+  {
+    src: "/chicago/shot-patio-night.jpg",
+    alt: "Night outdoor dining patio with orange umbrellas and city buildings",
+    caption: "Patio night",
+  },
+  {
+    src: "/chicago/shot-neon-river.jpg",
+    alt: "Neon purple and pink river reflections of Chicago buildings",
+    caption: "Neon river",
+  },
+  {
+    src: "/chicago/shot-river-reflection.jpg",
+    alt: "Chicago River at night with riverside tower reflections",
+    caption: "River reflections",
+  },
+  {
+    src: "/chicago/shot-urban-canyon.jpg",
+    alt: "Elevated downtown street canyon at dusk",
+    caption: "Urban canyon",
+  },
+  {
+    src: "/chicago/shot-pink-towers.jpg",
+    alt: "Low-angle skyscraper cluster against a pink sunset sky",
+    caption: "Pink hour towers",
+  },
+  {
+    src: "/chicago/shot-rooftop-clouds.jpg",
+    alt: "Rooftop neighborhood view under a dramatic cloudscape",
+    caption: "Rooftop clouds",
+  },
+  {
     src: "/chicago/shot-beach-life.jpg",
-    alt: "North Avenue Beach from the sand, Hancock rising behind the beach house",
-    caption: "Beach life · North Ave",
+    alt: "North Avenue Beach from the sand with the Hancock behind",
+    caption: "Beach life",
   },
   {
     src: "/chicago/shot-harbor-dock.jpg",
-    alt: "Harbor boats and Chicago skyline with a No Wake dock in the foreground",
+    alt: "Harbor boats and skyline with a No Wake dock",
     caption: "Harbor dock",
   },
   {
-    src: "/chicago/shot-harbor-masts.jpg",
-    alt: "Sailboat masts stacked against downtown Chicago",
-    caption: "Masts & towers",
-  },
-  {
     src: "/chicago/shot-fireworks.jpg",
-    alt: "Pink fireworks bursting over the lit Chicago skyline",
-    caption: "Fireworks night",
-  },
-  {
-    src: "/chicago/shot-night-trees.jpg",
-    alt: "Chicago skyline at night seen over dark treetops",
-    caption: "Over the trees",
-  },
-  {
-    src: "/chicago/shot-pano-day-west.jpg",
-    alt: "West side of the daytime Chicago skyline across the water",
-    caption: "Day · west skyline",
-  },
-  {
-    src: "/chicago/shot-pano-day-east.jpg",
-    alt: "East stretch of the daytime Chicago shoreline skyline",
-    caption: "Day · east shore",
-  },
-  {
-    src: "/chicago/shot-pano-dusk-right.jpg",
-    alt: "Dusk lights on the eastern towers across Lake Michigan",
-    caption: "Dusk towers",
-  },
-  {
-    src: "/chicago/shot-pano-night-left.jpg",
-    alt: "Night panorama focusing on the western downtown cluster",
-    caption: "Night · west cluster",
+    alt: "Pink fireworks over the lit Chicago skyline",
+    caption: "Fireworks",
   },
 ] as const;
 
@@ -129,8 +144,8 @@ export default async function HomePage() {
         <section>
           <h2 className="text-2xl font-semibold text-[#2f4a3a]">This city</h2>
           <p className="mt-1 text-sm text-[#5c6b61]">
-            Your Chicago album — beach, harbor, fireworks, night over trees, and different
-            skyline slices. No stock.
+            Your Chicago album — street, plaza, river nights, patio life, library, beach, and harbor.
+            No stock.
           </p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {GALLERY.map((shot) => (
