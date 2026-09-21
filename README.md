@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# InNeedFeed — Claim Calendar MVP
 
-## Getting Started
+Restaurant Donation Marketplace (Bread & Table / Chicago pilot).
 
-First, run the development server:
+## Run locally
 
 ```bash
+cd inneedfeed
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the URL Next prints (usually http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demo PIN (post a need)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Default: **`2244`**
 
-## Learn More
+Override with `DEMO_PIN` in `.env.local`.
 
-To learn more about Next.js, take a look at the following resources:
+## What to click
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Home** — open needs preview  
+2. **Calendar** — month groups of meal jobs  
+3. Open a job → **Claim** (check diet / allergens / window)  
+4. **Post a need** — charity demo form (PIN gated)  
+5. **Plaques** — recognition copy stub  
+6. **Bridge** — existing Grok Bot bridge status (unchanged API)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Data
 
-## Deploy on Vercel
+Needs persist in `data/needs.json` (created/seeded on first load). That folder is gitignored for runtime state; seeds regenerate if the file is missing.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Vercel (later)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Connect `bubbafrank9/inneedfeed`
+- Set `DEMO_PIN` (and bridge secrets if used)
+- Note: file-based JSON works on a single Node instance; for production multi-instance use a real DB (Prisma + Postgres/SQLite on disk is a fine next step)
+
+## Integrity rails (MVP)
+
+- Demo charity names only until vetted roster exists  
+- Allergens required on post  
+- One claim per need  
