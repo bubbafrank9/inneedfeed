@@ -1,5 +1,3 @@
-# Chicago photography — personal album (diversified crops)
+Personal Chicago album. Horizons leveled where crooked.
 
-Source: Google Photos album **CHICAGO** (Kenny/Bubba)
-Personal photographs only. Ultra-wide panoramas sliced into west/loop/east views;
-beach, harbor, fireworks, and night-over-trees prioritized for variety.
+Horizons leveled where crooked (2026-09-21).
