@@ -11,15 +11,16 @@ const STATUS_STYLES: Record<NeedStatus, { label: string; className: string }> = 
 };
 
 const NEIGHBORHOOD_PHOTOS = [
-  "/chicago/20180804_191714.jpg",
-  "/chicago/20180712_153056.jpg",
-  "/chicago/20180729_122129.jpg",
-  "/chicago/20180714_222243.jpg",
-  "/chicago/20180712_190107.jpg",
-  "/chicago/20180714_215139.jpg",
-  "/chicago/20180714_221905.jpg",
-  "/chicago/20180712_202927.jpg",
-  "/chicago/20180715_213655.jpg",
+  "/chicago/shot-beach-life.jpg",
+  "/chicago/shot-harbor-dock.jpg",
+  "/chicago/shot-harbor-masts.jpg",
+  "/chicago/shot-fireworks.jpg",
+  "/chicago/shot-night-trees.jpg",
+  "/chicago/shot-pano-day-west.jpg",
+  "/chicago/shot-pano-day-east.jpg",
+  "/chicago/shot-pano-dusk-right.jpg",
+  "/chicago/shot-pano-night-left.jpg",
+  "/chicago/shot-sunset-squareish.jpg",
 ];
 
 function photoForNeed(id: string): string {

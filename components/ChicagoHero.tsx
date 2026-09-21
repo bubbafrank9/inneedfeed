@@ -12,7 +12,7 @@ export function ChicagoHero({
     <section className="relative overflow-hidden rounded-[1.75rem] border border-[#e7dcc8]/80 shadow-[0_20px_50px_rgba(47,74,58,0.15)]">
       <div className="absolute inset-0">
         <Image
-          src="/chicago/20180804_191714.jpg"
+          src="/chicago/shot-sunset-hero.jpg"
           alt="Chicago skyline across Lake Michigan"
           fill
           priority
@@ -65,9 +65,9 @@ export function ChicagoHero({
         </div>
 
         <div className="grid grid-cols-2 gap-3">
-          <PhotoTile src="/chicago/20180714_221905.jpg" label="River & Loop" />
-          <PhotoTile src="/chicago/20180714_222243.jpg" label="Millennium Park" />
-          <PhotoTile src="/chicago/20180729_122129.jpg" label="Lakefront" className="col-span-2" />
+          <PhotoTile src="/chicago/shot-pano-night-left.jpg" label="River & Loop" />
+          <PhotoTile src="/chicago/shot-fireworks.jpg" label="Millennium Park" />
+          <PhotoTile src="/chicago/shot-harbor-dock.jpg" label="Lakefront" className="col-span-2" />
         </div>
       </div>
       <p className="relative border-t border-white/10 bg-black/25 px-6 py-2 text-[10px] text-[#e7dcc8]/80 backdrop-blur">

@@ -5,51 +5,52 @@ import { listNeeds } from "@/lib/marketplace/store";
 
 export const dynamic = "force-dynamic";
 
+/** Personal Chicago album — mixed views (beach, harbor, fireworks, night, sliced panos). */
 const GALLERY = [
   {
-    src: "/chicago/20180804_191714.jpg",
-    alt: "Chicago skyline at sunset from the water",
-    caption: "Sunset skyline",
+    src: "/chicago/shot-beach-life.jpg",
+    alt: "North Avenue Beach from the sand, Hancock rising behind the beach house",
+    caption: "Beach life · North Ave",
   },
   {
-    src: "/chicago/20180712_153056.jpg",
-    alt: "Oak Street Beach with the Hancock Tower behind the sand",
-    caption: "The lakefront",
+    src: "/chicago/shot-harbor-dock.jpg",
+    alt: "Harbor boats and Chicago skyline with a No Wake dock in the foreground",
+    caption: "Harbor dock",
   },
   {
-    src: "/chicago/20180729_122129.jpg",
-    alt: "Harbor boats in front of the Chicago skyline",
-    caption: "The harbor",
+    src: "/chicago/shot-harbor-masts.jpg",
+    alt: "Sailboat masts stacked against downtown Chicago",
+    caption: "Masts & towers",
   },
   {
-    src: "/chicago/20180714_222243.jpg",
-    alt: "Pink fireworks over the Chicago skyline at night",
-    caption: "Fireworks",
+    src: "/chicago/shot-fireworks.jpg",
+    alt: "Pink fireworks bursting over the lit Chicago skyline",
+    caption: "Fireworks night",
   },
   {
-    src: "/chicago/20180712_190107.jpg",
-    alt: "Wide Chicago skyline panorama across the water",
-    caption: "Skyline panorama",
+    src: "/chicago/shot-night-trees.jpg",
+    alt: "Chicago skyline at night seen over dark treetops",
+    caption: "Over the trees",
   },
   {
-    src: "/chicago/20180714_215139.jpg",
-    alt: "Chicago skyline lights at dusk across the lake",
-    caption: "Dusk on the lake",
+    src: "/chicago/shot-pano-day-west.jpg",
+    alt: "West side of the daytime Chicago skyline across the water",
+    caption: "Day · west skyline",
   },
   {
-    src: "/chicago/20180714_221905.jpg",
-    alt: "Night skyline panorama from the water",
-    caption: "Night panorama",
+    src: "/chicago/shot-pano-day-east.jpg",
+    alt: "East stretch of the daytime Chicago shoreline skyline",
+    caption: "Day · east shore",
   },
   {
-    src: "/chicago/20180712_202927.jpg",
-    alt: "Evening Chicago skyline panorama",
-    caption: "Evening skyline",
+    src: "/chicago/shot-pano-dusk-right.jpg",
+    alt: "Dusk lights on the eastern towers across Lake Michigan",
+    caption: "Dusk towers",
   },
   {
-    src: "/chicago/20180715_213655.jpg",
-    alt: "Chicago at night from the pier",
-    caption: "Night pier",
+    src: "/chicago/shot-pano-night-left.jpg",
+    alt: "Night panorama focusing on the western downtown cluster",
+    caption: "Night · west cluster",
   },
 ] as const;
 
@@ -61,7 +62,7 @@ export default async function HomePage() {
     <div className="flex w-full flex-1 flex-col">
       <section className="relative isolate min-h-[28rem] overflow-hidden sm:min-h-[32rem]">
         <Image
-          src="/chicago/20180804_191714.jpg"
+          src="/chicago/shot-sunset-hero.jpg"
           alt="Chicago skyline at sunset from the water"
           fill
           priority
@@ -128,7 +129,8 @@ export default async function HomePage() {
         <section>
           <h2 className="text-2xl font-semibold text-[#2f4a3a]">This city</h2>
           <p className="mt-1 text-sm text-[#5c6b61]">
-            Your Chicago album only — panoramas center-cropped for the page. No stock photos.
+            Your Chicago album — beach, harbor, fireworks, night over trees, and different
+            skyline slices. No stock.
           </p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {GALLERY.map((shot) => (

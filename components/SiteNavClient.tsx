@@ -118,7 +118,7 @@ export function SiteNavClient({
       <header className="sticky top-0 z-40 border-b border-white/20 shadow-[0_8px_30px_rgba(47,74,58,0.12)]">
         <div className="absolute inset-0 overflow-hidden">
           <Image
-            src="/chicago/20180712_190107.jpg"
+            src="/chicago/shot-pano-day-loop.jpg"
             alt=""
             fill
             priority
@@ -249,7 +249,7 @@ export function SiteNavClient({
           />
           <aside className="absolute right-0 top-0 flex h-full w-[min(100%,20rem)] flex-col bg-[#fffaf2] shadow-2xl">
             <div className="relative h-36 overflow-hidden">
-              <Image src="/chicago/20180714_221905.jpg" alt="" fill className="object-cover" sizes="320px" />
+              <Image src="/chicago/shot-beach-life.jpg" alt="" fill className="object-cover" sizes="320px" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#fffaf2] via-[#2f4a3a]/40 to-[#2f4a3a]/50" />
               <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4">
                 <div>
